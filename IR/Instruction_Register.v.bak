@@ -1,0 +1,26 @@
+module Instruction_Register(
+	input [7:0] IR_IN,
+	input			_EN_IR_IN,	
+	input			_EN_IR_OUT,	
+	input			CLOCK,
+	input			RESET,
+	
+	output reg [7:0]	IR_OUT
+);
+
+
+
+
+	always @(posedge CLOCK) begin
+		if (_EN_IR_IN)
+			IR_OUT = IR_IN;
+	end
+
+	always @(*) begin
+		if (RESET)
+			IR_OUT = 8'h00;
+		if (_EN_IR_OUT)
+			IR_OUT[7:4] = 4'hZ;
+	end
+	
+endmodule
