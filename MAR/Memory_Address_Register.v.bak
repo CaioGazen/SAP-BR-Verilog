@@ -1,0 +1,28 @@
+module Memory_Address_Register(
+	input [3:0] MAR_ADDR_PROG,
+	input [3:0] MAR_IN,
+	input 		_MAR_PROG,
+	input			_EN_MAR_IN,
+	input			CLOCK,
+	input			RESET,
+	
+	output reg [3:0] 	MAR_OUT
+);
+
+
+	always @(posedge CLOCK) begin
+		if (~_MAR_IN)
+			MAR_OUT = MAR_IN;
+		else if (RESET)
+			MAR_OUT = 4'b0000;
+	end
+	
+	
+	always @(*) begin
+		if(_MAR_PROG)
+			MAR_OUT = MAR_IN;
+		else if(~_MAR_PROG)
+			MAR_OUT = MAR_ADDR_PROG;
+	end
+	
+endmodule
