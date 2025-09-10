@@ -1,16 +1,16 @@
 /*<simulation_settings>
-<ftestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off rafaelAula2 -c rafaelAula2 --vector_source="/home/civ/SAP-BR/PC/PC_test.vwf" --testbench_file="/home/civ/SAP-BR/simulation/qsim/PC/PC_test.vwf.vt"</ftestbench_cmd>
-<ttestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off rafaelAula2 -c rafaelAula2 --vector_source="/home/civ/SAP-BR/PC/PC_test.vwf" --testbench_file="/home/civ/SAP-BR/simulation/qsim/PC/PC_test.vwf.vt"</ttestbench_cmd>
-<fnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory="/home/civ/SAP-BR/simulation/qsim/" rafaelAula2 -c rafaelAula2</fnetlist_cmd>
-<tnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=off --flatten_buses=off --timescale=1ps --tool=modelsim_oem --format=verilog --output_directory="/home/civ/SAP-BR/simulation/qsim/" rafaelAula2 -c rafaelAula2</tnetlist_cmd>
+<ftestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off rafaelAula2 -c rafaelAula2 --vector_source="/home/civ/SAP-BR-Verilog/PC/PC_test.vwf" --testbench_file="/home/civ/SAP-BR-Verilog/simulation/qsim/PC/PC_test.vwf.vt"</ftestbench_cmd>
+<ttestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off rafaelAula2 -c rafaelAula2 --vector_source="/home/civ/SAP-BR-Verilog/PC/PC_test.vwf" --testbench_file="/home/civ/SAP-BR-Verilog/simulation/qsim/PC/PC_test.vwf.vt"</ttestbench_cmd>
+<fnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory="/home/civ/SAP-BR-Verilog/simulation/qsim/" rafaelAula2 -c rafaelAula2</fnetlist_cmd>
+<tnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=off --flatten_buses=off --timescale=1ps --tool=modelsim_oem --format=verilog --output_directory="/home/civ/SAP-BR-Verilog/simulation/qsim/" rafaelAula2 -c rafaelAula2</tnetlist_cmd>
 <modelsim_script>onerror {exit -code 1}
 vlib work
 vlog -work work rafaelAula2.vo
 vlog -work work PC/PC_test.vwf.vt
-vsim -c -t 1ps -L fiftyfivenm_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.PC_vlg_vec_tst
+vsim -c -t 1ps -L fiftyfivenm_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.Program_Counter_vlg_vec_tst
 vcd file -direction rafaelAula2.msim.vcd
-vcd add -internal PC_vlg_vec_tst/*
-vcd add -internal PC_vlg_vec_tst/i1/*
+vcd add -internal Program_Counter_vlg_vec_tst/*
+vcd add -internal Program_Counter_vlg_vec_tst/i1/*
 proc simTimestamp {} {
     echo "Simulation time: $::now ps"
     if { [string equal running [runStatus]] } {
@@ -20,17 +20,16 @@ proc simTimestamp {} {
 after 2500 simTimestamp
 run -all
 quit -f
-
 
 </modelsim_script>
 <modelsim_script_timing>onerror {exit -code 1}
 vlib work
 vlog -work work rafaelAula2.vo
 vlog -work work PC/PC_test.vwf.vt
-vsim -novopt -c -t 1ps -L fiftyfivenm_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.PC_vlg_vec_tst
+vsim -novopt -c -t 1ps -L fiftyfivenm_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.Program_Counter_vlg_vec_tst
 vcd file -direction rafaelAula2.msim.vcd
-vcd add -internal PC_vlg_vec_tst/*
-vcd add -internal PC_vlg_vec_tst/i1/*
+vcd add -internal Program_Counter_vlg_vec_tst/*
+vcd add -internal Program_Counter_vlg_vec_tst/i1/*
 proc simTimestamp {} {
     echo "Simulation time: $::now ps"
     if { [string equal running [runStatus]] } {
@@ -40,7 +39,6 @@ proc simTimestamp {} {
 after 2500 simTimestamp
 run -all
 quit -f
-
 
 </modelsim_script_timing>
 <hdl_lang>verilog</hdl_lang>
@@ -90,7 +88,7 @@ SIGNAL("_JMP")
 	PARENT = "";
 }
 
-SIGNAL("_PC_OUT")
+SIGNAL("_EN_PC_OUT")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
@@ -120,46 +118,6 @@ SIGNAL("CLOCK")
 	PARENT = "";
 }
 
-SIGNAL("PC_IN_0")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = INPUT;
-	PARENT = "";
-}
-
-SIGNAL("PC_IN_1")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = INPUT;
-	PARENT = "";
-}
-
-SIGNAL("PC_IN_2")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = INPUT;
-	PARENT = "";
-}
-
-SIGNAL("PC_IN_3")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = INPUT;
-	PARENT = "";
-}
-
 SIGNAL("PC_INC")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
@@ -170,44 +128,104 @@ SIGNAL("PC_INC")
 	PARENT = "";
 }
 
-SIGNAL("PC_OUT_0")
+SIGNAL("PC_IN")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 4;
+	LSB_INDEX = 0;
+	DIRECTION = INPUT;
+	PARENT = "";
+}
+
+SIGNAL("PC_IN[3]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "PC_IN";
+}
+
+SIGNAL("PC_IN[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "PC_IN";
+}
+
+SIGNAL("PC_IN[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "PC_IN";
+}
+
+SIGNAL("PC_IN[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "PC_IN";
+}
+
+SIGNAL("PC_OUT")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 4;
+	LSB_INDEX = 0;
 	DIRECTION = OUTPUT;
 	PARENT = "";
 }
 
-SIGNAL("PC_OUT_1")
+SIGNAL("PC_OUT[3]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "";
+	PARENT = "PC_OUT";
 }
 
-SIGNAL("PC_OUT_2")
+SIGNAL("PC_OUT[2]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "";
+	PARENT = "PC_OUT";
 }
 
-SIGNAL("PC_OUT_3")
+SIGNAL("PC_OUT[1]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "";
+	PARENT = "PC_OUT";
+}
+
+SIGNAL("PC_OUT[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "PC_OUT";
 }
 
 TRANSITION_LIST("_JMP")
@@ -215,18 +233,20 @@ TRANSITION_LIST("_JMP")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 1 FOR 150.0;
-		LEVEL 0 FOR 30.0;
-		LEVEL 1 FOR 820.0;
+		LEVEL 1 FOR 370.0;
+		LEVEL 0 FOR 20.0;
+		LEVEL 1 FOR 610.0;
 	}
 }
 
-TRANSITION_LIST("_PC_OUT")
+TRANSITION_LIST("_EN_PC_OUT")
 {
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 1000.0;
+		LEVEL 0 FOR 710.0;
+		LEVEL 1 FOR 130.0;
+		LEVEL 0 FOR 160.0;
 	}
 }
 
@@ -235,7 +255,9 @@ TRANSITION_LIST("_RESET")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 1 FOR 1000.0;
+		LEVEL 1 FOR 900.0;
+		LEVEL 0 FOR 30.0;
+		LEVEL 1 FOR 70.0;
 	}
 }
 
@@ -253,48 +275,14 @@ TRANSITION_LIST("CLOCK")
 	}
 }
 
-TRANSITION_LIST("PC_IN_0")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL 0 FOR 1000.0;
-	}
-}
-
-TRANSITION_LIST("PC_IN_1")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL 0 FOR 1000.0;
-	}
-}
-
-TRANSITION_LIST("PC_IN_2")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL 0 FOR 1000.0;
-	}
-}
-
-TRANSITION_LIST("PC_IN_3")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL 0 FOR 1000.0;
-	}
-}
-
 TRANSITION_LIST("PC_INC")
 {
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 150.0;
+		LEVEL 0 FOR 50.0;
+		LEVEL 1 FOR 30.0;
+		LEVEL 0 FOR 70.0;
 		LEVEL 1 FOR 30.0;
 		LEVEL 0 FOR 130.0;
 		LEVEL 1 FOR 30.0;
@@ -308,7 +296,43 @@ TRANSITION_LIST("PC_INC")
 	}
 }
 
-TRANSITION_LIST("PC_OUT_0")
+TRANSITION_LIST("PC_IN[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 1 FOR 1000.0;
+	}
+}
+
+TRANSITION_LIST("PC_IN[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 1 FOR 1000.0;
+	}
+}
+
+TRANSITION_LIST("PC_IN[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 1000.0;
+	}
+}
+
+TRANSITION_LIST("PC_IN[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 1000.0;
+	}
+}
+
+TRANSITION_LIST("PC_OUT[3]")
 {
 	NODE
 	{
@@ -317,7 +341,7 @@ TRANSITION_LIST("PC_OUT_0")
 	}
 }
 
-TRANSITION_LIST("PC_OUT_1")
+TRANSITION_LIST("PC_OUT[2]")
 {
 	NODE
 	{
@@ -326,7 +350,7 @@ TRANSITION_LIST("PC_OUT_1")
 	}
 }
 
-TRANSITION_LIST("PC_OUT_2")
+TRANSITION_LIST("PC_OUT[1]")
 {
 	NODE
 	{
@@ -335,7 +359,7 @@ TRANSITION_LIST("PC_OUT_2")
 	}
 }
 
-TRANSITION_LIST("PC_OUT_3")
+TRANSITION_LIST("PC_OUT[0]")
 {
 	NODE
 	{
@@ -355,7 +379,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "_PC_OUT";
+	CHANNEL = "_EN_PC_OUT";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 1;
@@ -382,52 +406,57 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "PC_IN_0";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
+	CHANNEL = "PC_IN";
+	EXPAND_STATUS = EXPANDED;
+	RADIX = Unsigned;
 	TREE_INDEX = 4;
 	TREE_LEVEL = 0;
+	CHILDREN = 5, 6, 7, 8;
 }
 
 DISPLAY_LINE
 {
-	CHANNEL = "PC_IN_1";
+	CHANNEL = "PC_IN[3]";
 	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
+	RADIX = Unsigned;
 	TREE_INDEX = 5;
-	TREE_LEVEL = 0;
+	TREE_LEVEL = 1;
+	PARENT = 4;
 }
 
 DISPLAY_LINE
 {
-	CHANNEL = "PC_IN_2";
+	CHANNEL = "PC_IN[2]";
 	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
+	RADIX = Unsigned;
 	TREE_INDEX = 6;
-	TREE_LEVEL = 0;
+	TREE_LEVEL = 1;
+	PARENT = 4;
 }
 
 DISPLAY_LINE
 {
-	CHANNEL = "PC_IN_3";
+	CHANNEL = "PC_IN[1]";
 	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
+	RADIX = Unsigned;
 	TREE_INDEX = 7;
-	TREE_LEVEL = 0;
+	TREE_LEVEL = 1;
+	PARENT = 4;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "PC_IN[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 8;
+	TREE_LEVEL = 1;
+	PARENT = 4;
 }
 
 DISPLAY_LINE
 {
 	CHANNEL = "PC_INC";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 8;
-	TREE_LEVEL = 0;
-}
-
-DISPLAY_LINE
-{
-	CHANNEL = "PC_OUT_0";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 9;
@@ -436,29 +465,52 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "PC_OUT_1";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
+	CHANNEL = "PC_OUT";
+	EXPAND_STATUS = EXPANDED;
+	RADIX = Unsigned;
 	TREE_INDEX = 10;
 	TREE_LEVEL = 0;
+	CHILDREN = 11, 12, 13, 14;
 }
 
 DISPLAY_LINE
 {
-	CHANNEL = "PC_OUT_2";
+	CHANNEL = "PC_OUT[3]";
 	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
+	RADIX = Unsigned;
 	TREE_INDEX = 11;
-	TREE_LEVEL = 0;
+	TREE_LEVEL = 1;
+	PARENT = 10;
 }
 
 DISPLAY_LINE
 {
-	CHANNEL = "PC_OUT_3";
+	CHANNEL = "PC_OUT[2]";
 	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
+	RADIX = Unsigned;
 	TREE_INDEX = 12;
-	TREE_LEVEL = 0;
+	TREE_LEVEL = 1;
+	PARENT = 10;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "PC_OUT[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 13;
+	TREE_LEVEL = 1;
+	PARENT = 10;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "PC_OUT[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 14;
+	TREE_LEVEL = 1;
+	PARENT = 10;
 }
 
 TIME_BAR

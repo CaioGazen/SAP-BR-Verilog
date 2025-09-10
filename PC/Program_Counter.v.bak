@@ -1,0 +1,29 @@
+module Program_Counter(
+	input [3:0] PC_IN,
+	input 		PC_INC,
+	input			CLOCK,
+	input			_JMP,
+	input			_RESET,
+	
+	output [3:0] _PC_OUT,
+);
+//
+	reg [3:0] Count;
+
+	always @(posedge CLOCK) begin
+		if (~_JMP)
+			Count <= PC_IN
+		else
+			Count = Count+1
+	end
+	
+	
+	always @(*) begin
+	  if (ALU_Out) begin
+			S = result;
+	  end else begin
+			S = 8'hZZ; // Alta impedância
+	  end
+	end
+	
+endmodule
