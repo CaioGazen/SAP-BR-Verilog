@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "MAX 10"
 set_global_assignment -name DEVICE 10M50DAF484C7G
-set_global_assignment -name TOP_LEVEL_ENTITY SAP_BR
+set_global_assignment -name TOP_LEVEL_ENTITY EEPROM
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "08:02:32  JULY 04, 2025"
 set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Lite Edition"
@@ -70,6 +70,20 @@ set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
 set_global_assignment -name TIMING_ANALYZER_MULTICORNER_ANALYSIS ON
 set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
+set_global_assignment -name VECTOR_WAVEFORM_FILE OR/test_lda.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE RAM/RAM_test.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE PC/PC_test.vwf
+set_global_assignment -name BDF_FILE SAP_BR.bdf
+set_global_assignment -name VERILOG_FILE rafaelAula2.v
+set_global_assignment -name VERILOG_FILE PC/Program_Counter.v
+set_global_assignment -name VERILOG_FILE MAR/Memory_Address_Register.v
+set_global_assignment -name VERILOG_FILE RAM/Random_Access_Memory.v
+set_global_assignment -name VERILOG_FILE IR/Instruction_Register.v
+set_global_assignment -name VECTOR_WAVEFORM_FILE IR/IR_test.vwf
+set_global_assignment -name VERILOG_FILE EEPROM/EEPROM.v
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to pin_name3
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to pin_name2
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to pin_name1
@@ -87,58 +101,4 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Y4
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Y5
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Y6
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Y7
-set_global_assignment -name BDF_FILE OR/O_R.bdf
-set_global_assignment -name BDF_FILE SAP_BR.bdf
-set_global_assignment -name BDF_FILE ULA/Seletor4Canais.bdf
-set_global_assignment -name BDF_FILE ULA/Somador_Completo_74_283.bdf
-set_global_assignment -name BDF_FILE ULA/Buffers_TriState_8.bdf
-set_global_assignment -name BDF_FILE ULA/ULA_Iago.bdf
-set_global_assignment -name VECTOR_WAVEFORM_FILE DEMUX/DEMUX_4bits_teste.vwf
-set_global_assignment -name BDF_FILE DEMUX/DEMUX_4bits.bdf
-set_global_assignment -name BDF_FILE EEPROM/EEPROM_53x18_FULL.bdf
-set_global_assignment -name BDF_FILE Mux/MuxDuplode8bits.bdf
-set_global_assignment -name BDF_FILE Mux/MuxDuplode4bits.bdf
-set_global_assignment -name BDF_FILE teste.bdf
-set_global_assignment -name BDF_FILE CI_74LS157/CI_74LS157.bdf
-set_global_assignment -name BDF_FILE DM74LS138/DM74LS138.bdf
-set_global_assignment -name VECTOR_WAVEFORM_FILE DM74LS138/Waveform.vwf
-set_global_assignment -name BDF_FILE SN74LS173/SN74LS173.bdf
-set_global_assignment -name BDF_FILE FA74LS283/FA74LS283.bdf
-set_global_assignment -name BDF_FILE RAM/RAM.bdf
-set_global_assignment -name BDF_FILE RAM/Cell_1_bit.bdf
-set_global_assignment -name VECTOR_WAVEFORM_FILE RAM/Cell_1_bit_test.vwf
-set_global_assignment -name BDF_FILE RAM/Cell_8x8_bits.bdf
-set_global_assignment -name BDF_FILE RAM/AND_8x8.bdf
-set_global_assignment -name VECTOR_WAVEFORM_FILE RAM/RAM_test.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE RAM/Cell_8x8_test.vwf
-set_global_assignment -name BDF_FILE DM74LS161A/DM74LS161A.bdf
-set_global_assignment -name VECTOR_WAVEFORM_FILE DM74LS161A/DM74LS161A.vwf
-set_global_assignment -name BDF_FILE PC/PC.bdf
-set_global_assignment -name BDF_FILE ACC/ACC.bdf
-set_global_assignment -name VECTOR_WAVEFORM_FILE ACC/ACC_test.vwf
-set_global_assignment -name BDF_FILE BR/BR.bdf
-set_global_assignment -name BDF_FILE IR/IR.bdf
-set_global_assignment -name VECTOR_WAVEFORM_FILE BR/Waveform.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform.vwf
-set_global_assignment -name BDF_FILE MAR/MAR.bdf
-set_global_assignment -name BDF_FILE EEPROM/EEPROM_1bit.bdf
-set_global_assignment -name BDF_FILE EEPROM/EEPROM_53x18_EMPTY.bdf
-set_global_assignment -name VECTOR_WAVEFORM_FILE EEPROM/1_Bit_test.vwf
-set_global_assignment -name BDF_FILE DEMUX/DEMUX_3bits_3.bdf
-set_global_assignment -name VECTOR_WAVEFORM_FILE EEPROM/EEPROM_test.vwf
-set_global_assignment -name BDF_FILE CTRL/CTRL.bdf
-set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform1.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE CTRL/CTRL.vwf
-set_global_assignment -name BDF_FILE CTRL/FEC.bdf
-set_global_assignment -name VECTOR_WAVEFORM_FILE CTRL/CTRL_2.vwf
-set_global_assignment -name BDF_FILE CTRL/SAP_BR.bdf
-set_global_assignment -name VECTOR_WAVEFORM_FILE ULA/WaveformULA.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE OR/test_lda.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE test_lda.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE PC/PC_test.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE test_soma.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE test_fib.vwf
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
