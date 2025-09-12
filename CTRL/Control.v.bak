@@ -1,0 +1,20 @@
+module EEPROM(
+	input CLOCK_AUTO,
+	input HLT_IN,
+	input BTN_RESET,
+	
+	output CLOCK,
+	output RESET,
+	output _RESET
+);
+
+
+	assign wire CLOCK = (CLOCK_AUTO & ~HLT_IN)
+	
+	always @(~CLOCK) begin
+	
+		
+	end
+	
+
+endmodule

@@ -1,0 +1,58 @@
+module ULA (
+    input  wire [7:0] A,
+    input  wire [7:0] B,
+    input  wire       Sub, 
+	 input  wire       Not,	
+    input  wire       ALU_out,
+	 input  wire       AL0,
+    input  wire       AL1, 
+    output [7:0] S
+);
+	// Fio interno para armazenar as opcoes de AL1 E AL0 de operacoes da ULA	
+	wire [1:0] sel = {AL1, AL0};
+
+
+	// Registrador interno para armazenar o resultado da operação antes de ir para o buffer.
+	reg [7:0] result;
+
+	// Fio interno para o operando B modificado (para a subtração).
+	// Se Sub=0 (ADD), B_modificado = B.
+	// Se Sub=1 (SUB), B_modificado = ~B (complemento de um).
+	wire [7:0] B_modified;
+	assign B_modified = Sub ? ~B : B;
+	 
+	always @(*) begin
+		 result = 8'bx; // 'x' significa "don't care", ajuda na depuração
+
+		 case (sel)
+			  2'b00: begin // Se AL1=0 e AL0=0 = Soma/Subtracao
+					// Para a adição (Su=0): result = A + B + 0.
+					// Para a subtração (Su=1): result = A + ~B + 1 (complemento de dois).
+					// O sinal 'Sub' atua como o carry-in (Cin) para completar o complemento de dois.
+					result = A + B_modified + Sub;
+			  end
+			  2'b01: begin // Se AL1=0 e AL0=1 = AND
+					result = A & B;
+			  end
+			  2'b10: begin // Se AL1=1 e AL0=0 = OR
+					result = A | B;
+			  end
+			  2'b11: begin // Se AL1=1 e AL0=1 = XOR/NOT
+					if (Not) begin 		// se not = 1 -- Resultado = Not (A)
+						 result = ~A;
+					end else begin			// se not = 0 -- Resultado = A XOR B
+						 result = A ^ B;
+					end
+			  end
+			  default: begin // Cobre todas as outras possibilidades (ex: 'x' ou 'z')
+					result = 8'bx;
+			  end
+		 endcase
+	end
+
+	// Lógica do buffer tri-state para a saída principal.
+   // A saída 'S' só é acionada quando 'ALU_out' é 1.
+   // Caso contrário, fica em alta impedância (z).
+	assign S = ALU_out ? result : 8'hZZ;
+
+endmodule

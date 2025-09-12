@@ -1,0 +1,25 @@
+module SAP_BR(
+	input [3:0] MAR_ADDR_PROG,
+	input [7:0] RAM_PROG_DATA,
+	input			WR_PROG,
+	input 		PROG,
+	input			HALT,
+	input			CLOCK_IN,
+	input 		RESET,
+	
+	output [7:0]	A_OUT_DEBUG,
+	output [7:0]	B_OUT_DEBUG,
+	output [3:0]	MAR_ADDR_DEBUG,
+	
+	output HLT, PC_INC, JMP, PC_OUT, MAR_IN, RAM_IN, RAM_OUT, IR_IN, IR_OUT, ACC_OUT, ACC_IN, SUB, AL_1, AL_0, ALU_OUT, NOT, BR_IN, OPR_IN
+);
+
+wire HLT_IN,
+
+assign HLT_IN = (PROG || HALT || HLT)
+
+
+
+
+
+endmodule

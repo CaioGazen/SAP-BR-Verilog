@@ -21,11 +21,11 @@ module Instruction_Register(
 
 	always @(*) begin
 		if (_EN_IR_OUT)
-			IR_OUT[3:0] = 4'hZ;
+			IR_OUT[7:4] = 4'hZ;
 		else
-			IR_OUT[3:0] = Mem[3:0];
+			IR_OUT[7:4] = Mem[7:4];
 			
-		IR_OUT[7:4] = Mem[7:4];
+		IR_OUT[3:0] = Mem[3:0];
 	end 
 
 

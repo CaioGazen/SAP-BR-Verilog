@@ -13,8 +13,11 @@ module Random_Access_Memory(
 
 	reg [7:0] Memory [0:15];
 	
+	wire CLOCK_WR;
 	
-	always @(posedge CLOCK) begin
+	assign CLOCK_WR = (CLOCK || WR_PROG);
+	
+	always @(posedge CLOCK_WR) begin
 		if (_RAM_PROG & EN_RAM_IN)
 			Memory[ADDR_IN] <= RAM_IN;
 		else if(~_RAM_PROG & WR_PROG)

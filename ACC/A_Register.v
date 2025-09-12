@@ -1,0 +1,33 @@
+module A_Register(
+	input [7:0] ACC_IN,
+	input			_EN_ACC_IN,	
+	input			_EN_ACC_OUT,	
+	input			CLOCK,
+	input			RESET,
+	
+	output 	reg 	[7:0]		ACC_OUT,
+	output 			[7:0]		ACC_OUT_ULA
+);
+
+	reg [7:0] Mem;
+
+
+
+	always @(posedge CLOCK) begin
+		if (RESET)
+			Mem = 8'h00;
+		else if (~_EN_ACC_IN)
+			Mem = ACC_IN;
+	end
+
+	assign ACC_OUT_ULA = Mem;
+	
+	always @(*) begin
+		if (_EN_ACC_OUT)
+			ACC_OUT[7:0] = 4'hZZ;
+		else
+			ACC_OUT[7:0] = Mem[7:0];
+	end 
+
+
+endmodule

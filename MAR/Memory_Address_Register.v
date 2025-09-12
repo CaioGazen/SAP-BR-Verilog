@@ -23,7 +23,7 @@ module Memory_Address_Register(
 	always @(*) begin
 		if(_MAR_PROG)
 			MAR_OUT = addr;
-		else if(~_MAR_PROG)
+		else
 			MAR_OUT = MAR_ADDR_PROG;
 	end
 	

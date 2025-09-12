@@ -8,7 +8,7 @@ module EEPROM(
 
 
 	always @(*) begin
-		case (Address)
+		casex (Address)
 			7'bxxxx000: EEPROM_OUT = 18'b000110000000000000;
 			7'bxxxx001: EEPROM_OUT = 18'b010000110000000000;
 			7'b0000010: EEPROM_OUT = 18'b000000000000000000;
@@ -62,7 +62,6 @@ module EEPROM(
 			7'bxxxx101: EEPROM_OUT = 18'bxxxxxxxxxxxxxxxxxx;
 			7'bxxxx110: EEPROM_OUT = 18'bxxxxxxxxxxxxxxxxxx;
 			7'bxxxx111: EEPROM_OUT = 18'bxxxxxxxxxxxxxxxxxx;
-
 		endcase
 	end
 	
